@@ -14,6 +14,25 @@ body {
   color: var(--text);
   margin: 0;
   padding: 0;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(120deg, #b3e0ff 0 2px, transparent 2px 40px),
+              repeating-linear-gradient(240deg, #e0e7ff 0 2px, transparent 2px 40px);
+  opacity: 0.18;
+  animation: bgmove 16s linear infinite;
+}
+
+@keyframes bgmove {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 200px 400px, 400px 200px; }
 }
 header {
   background: #fff;
@@ -58,10 +77,36 @@ nav ul li a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
+  min-height: 70vh;
   text-align: center;
-  background: linear-gradient(120deg, #eaf6ff 0%, #f7f9fa 100%);
-  padding: 4rem 1rem 2rem 1rem;
+  position: relative;
+  background: none;
+  padding: 5rem 1rem 2rem 1rem;
+  z-index: 1;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: 0;
+  background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 200 Q100 100 200 200 T400 200 T600 200 T800 200 T1000 200 T1200 200" stroke="%230055a5" stroke-width="4" fill="none"/><path d="M0 220 Q100 120 200 220 T400 220 T600 220 T800 220 T1000 220 T1200 220" stroke="%23f9b233" stroke-width="2" fill="none"/><path d="M0 240 Q100 140 200 240 T400 240 T600 240 T800 240 T1000 240 T1200 240" stroke="%236c757d" stroke-width="1.5" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.22;
+  animation: brainwave 8s linear infinite alternate;
+}
+
+@keyframes brainwave {
+  0% { background-position-y: 0; }
+  100% { background-position-y: 40px; }
+}
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 .hero h1 {
   font-size: 2.8rem;
